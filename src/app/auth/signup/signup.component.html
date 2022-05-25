@@ -1,0 +1,62 @@
+<div class="ui card">
+  <div class="content">
+    <h3>Create an account</h3>
+    <form class="ui form" [formGroup]="signupFrm" (ngSubmit)="signupForm()">
+      <div class="field">
+        <label>Name</label>
+        <input type="text" formControlName="name">
+      </div>
+
+      <div>{{ signupFrm.get('name')?.errors | json }}</div>
+
+      <div class="field">
+        <label>Email</label>
+        <input type="email" formControlName="email">
+      </div>
+
+      <div>{{ signupFrm.get('email')?.errors | json }}</div>
+
+
+      <div class="field">
+        <label>Phone Number</label>
+        <input type="number" formControlName="phone">
+      </div>
+      <div>{{ signupFrm.get('phone')?.errors | json }}</div>
+
+
+      <div class="field">
+        <label>Password</label>
+        <input type="password" formControlName="password">
+      </div>
+      <div>{{ signupFrm.get('password')?.errors | json }}</div>
+
+
+      <div class="field">
+        <label>Password Confirmation</label>
+        <input type="password" formControlName="confirmPassword">
+      </div>
+      <div>{{ signupFrm.get('confirmPassword')?.errors | json }}</div>
+
+      <button class="ui primary button" type="submit" [disabled]="signupFrm.invalid">Submit</button>
+
+      <br><br>
+      <div class="summary">
+        Already have an account <a routerLink="/sign-in"> <u>Signin instead</u></a>
+     </div>
+
+     <div class="ui red basic label" *ngIf="signupFrm.errors?.['noConnection']">
+        No internet connection detected, fails to Signup!
+     </div>
+
+     <div *ngIf="signupFrm.errors?.['unKnownErrors']" class="ui red basic label">
+        Failed to signup!
+     </div>
+
+    </form>
+  </div>
+</div>
+
+<div class="card">
+  Form Valid: {{ signupFrm.valid | json }} <br/>
+  Form Errors: {{ signupFrm.errors | json }}
+</div>

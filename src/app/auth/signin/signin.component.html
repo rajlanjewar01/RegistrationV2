@@ -1,0 +1,32 @@
+<div class="ui card">
+    <div class="content">
+      <h3>Login to your account</h3>
+      <form class="ui form"  [formGroup]="authForm" (ngSubmit)="onSubmit()">
+        <div class="field">
+          <label>Email</label>
+          <input type="email" formControlName="email">
+        </div>
+
+        <ng-container *ngIf="this.authForm.errors && this.authForm.touched">
+          <div class="ui red message" *ngIf="authForm.get('email')?.errors?.['required']">
+            *Required Fields
+          </div>
+        </ng-container>
+
+  
+        <div class="field">
+          <label>Password</label>
+          <input type="password" formControlName="password">
+        </div>
+
+        <button class="ui button" type="submit">Submit</button>
+        <br><br>
+      <div class="summary">
+        Not have an account <a routerLink="/sign-up"> <u>Create one</u></a>
+      </div>
+      <div class="summary">
+        <small>Forgot password <a routerLink="/forgot-password"> <u>click here</u></a></small>
+      </div>
+      </form>
+    </div>
+  </div>
